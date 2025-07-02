@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Photo Gallery</title>
+  <style>
+    #image {
+      height: 300px;
+      background-color: #ddd;
+      text-align: center;
+      line-height: 300px;
+      font-size: 20px;
+      margin-bottom: 20px;
+      background-size: cover;
+      background-position: center;
+      color: black;
+    }
+
+    .preview {
+      height: 100px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body onload="initGallery()">
+
+  <div id="image">Hover over an image below to display here.</div>
+
+  <img class="preview" src="https://via.placeholder.com/150/FF0000/FFFFFF?text=Image+1" 
+       alt="A red image" 
+       onmouseover="upDate(this)" 
+       onmouseleave="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()">
+
+  <img class="preview" src="https://via.placeholder.com/150/00FF00/000000?text=Image+2" 
+       alt="A green image" 
+       onmouseover="upDate(this)" 
+       onmouseleave="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()">
+
+  <img class="preview" src="https://via.placeholder.com/150/0000FF/FFFFFF?text=Image+3" 
+       alt="A blue image" 
+       onmouseover="upDate(this)" 
+       onmouseleave="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()">
+
+  <img class="preview" src="https://via.placeholder.com/150/FFFF00/000000?text=Image+4" 
+       alt="A yellow image" 
+       onmouseover="upDate(this)" 
+       onmouseleave="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()">
+
+  <img class="preview" src="https://via.placeholder.com/150/FF00FF/FFFFFF?text=Image+5" 
+       alt="A magenta image" 
+       onmouseover="upDate(this)" 
+       onmouseleave="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()">
+
+  <img class="preview" src="https://via.placeholder.com/150/00FFFF/000000?text=Image+6" 
+       alt="A cyan image" 
+       onmouseover="upDate(this)" 
+       onmouseleave="undo()" 
+       onfocus="upDate(this)" 
+       onblur="undo()">
+
+  <script>
+    function upDate(previewPic) {
+      console.log("Hover or focus event triggered on image with alt:", previewPic.alt);
+      const image = document.getElementById("image");
+      image.innerHTML = previewPic.alt;
+      image.style.backgroundImage = `url('${previewPic.src}')`;
+    }
+
+    function undo() {
+      console.log("Mouse left or blur event triggered");
+      const image = document.getElementById("image");
+      image.innerHTML = "Hover over an image below to display here.";
+      image.style.backgroundImage = "url('')";
+    }
+
+    function initGallery() {
+      console.log("Page loaded – running initGallery()");
+      const previews = document.querySelectorAll(".preview");
+      for (let i = 0; i < previews.length; i++) {
+        previews[i].setAttribute("tabindex", "0"); // Makes each image focusable via keyboard
+      }
+    }
+  </script>
+
+</body>
+</html>
